@@ -3,12 +3,22 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h> 
+/*
+ *    A palindromic number reads the same both ways. 
+ *  
+ *    The largest palindrome made from the product of 
+ *    two 2-digit numbers is 9009 = 91 × 99.
+ *
+ *    Find the largest palindrome made from the product 
+ *    of two 3-digit numbers.
+ * 
+ */
 
 typedef enum { false, true } bool;
 
 int palindrome_test(int n){
     int digits = (n == 0) ? 1 : (int) (log10((double) n) + 1);
-    int array_number[digits];
+    int array_number[digits];git 
     int number = n;
     int i;
     for (i = 0; i < digits; i++){

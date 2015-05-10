@@ -3,6 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+ *	2520 is the smallest number that can be divided by each 
+ *	of the numbers from 1 to 10 without any remainder.
+ *
+ *	What is the smallest positive number that is 
+ *	evenly divisible by all of the numbers from 1 to 20?
+ *
+ */
 typedef enum { false, true } bool;
 
 bool prime_test(int number){
