@@ -10,7 +10,7 @@
 typedef enum { false, true } bool;
 
 // Take a number and a list of primes < number.
-// If one prime divides number then number is not prime.
+// If any one prime divides number then number is not prime.
 // Else number is prime.
 
 bool prime_check(long* array, int length, long number){
@@ -33,7 +33,6 @@ int main(void){
 		array[i] = 0;
 	}
 	array[0] = 2;
-	
 	long number;
 	for (i = 1; i < limit; i++){
 		for(number = array[i-1] + 1; number < 2*array[i-1]; number++){
@@ -43,7 +42,6 @@ int main(void){
 			}
 		}
 	}
-
 	printf("The %dth prime is %ld \n",limit , array[limit-1]);
 	return 0;
 }
