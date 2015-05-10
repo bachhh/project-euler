@@ -25,5 +25,6 @@ int main(){
 	int sum_of_square = n*(n+1)*(2*n+1)/6;
 	int square_of_sum = pow((n*(n+1))/2, 2);
 	printf("Result: %d \n", (int)fabs(sum_of_square - square_of_sum));
+	
 	return 0;
 }
