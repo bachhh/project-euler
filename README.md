@@ -2,7 +2,7 @@
 ---
 Pratice programming for solving Project Euler problems @https://projecteuler.net/
 
-Solutions are written in C, you are advised to heads to https://projecteuler.net/ and try to tackle the question first before looking at the solution.
+Solutions are written in C, you are advised to head over to https://projecteuler.net/ and try to tackle the question first, before looking at the solution.
 
 ---
 ## License
