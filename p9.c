@@ -25,21 +25,22 @@
  */
  
 
-int binary_search(int* array,int length, int n){
+int binary_search(int* array,int length, int key){
     int l = 0; r = length;
     int pivot = (l + r) / 2;
-    while( l < r){
-        if ( n < array[pivot]){
+    while( l <= r){
+        if ( key < array[pivot]){
             r = pivot-1, pivot = (l + r)/2;
         }
-        else{
-            l = pivot, pivot = (l + r)/2;
+        else if ( key > array[pivot]{
+            l = pivot+1, pivot = (l + r)/2;
         }
-        
+        else{
+            return pivot;
+        }
     }
-    
+    return -1; // key not found
 }
-
 
 int main(){
     int a, b, c;
@@ -52,6 +53,11 @@ int main(){
         array_a[334] =  i * i;
     }
     
-    
+    for (a = 0;  a < 334; a++){
+        for (b = 500/a; b < 500 && b 
+    }
+        
+        
+        
         
 }
