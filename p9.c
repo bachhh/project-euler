@@ -1,4 +1,45 @@
 #include <stdio.h>
+/* 
+ *
+ *  A Pythagorean triplet is a set of three natural numbers 
+ *  a < b < c, for which,
+ *  a^2 + b^2 = c^2
+ *
+ *  For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
+ *
+ *  There exists exactly one Pythagorean triplet for which 
+ *  a + b + c = 1000.
+ *  Find the product abc.
+ *
+ */
+ 
+/*          
+ *  ### Math ###
+ *  (a + b) = 1000 - c
+ *  (a + b)^2 = (1000 - c)^2
+ *  a^2 + b^2 + 2ab = 1000^2 - 2000c + c^2, also: a^2 + b^2 = c^2
+ *  ab/500 = 1000 - 2c
+ *  a b are natural number -> ab/500 > 0 -> 1000 -2c > 0 -> c < 500
+ *   0 < c < 500 -> 1000 - 2c belongs to N -> ab % 500 == 0
+ *
+ */
+ 
+
+int binary_search(int* array,int length, int n){
+    int l = 0; r = length;
+    int pivot = (l + r) / 2;
+    while( l < r){
+        if ( n < array[pivot]){
+            r = pivot-1, pivot = (l + r)/2;
+        }
+        else{
+            l = pivot, pivot = (l + r)/2;
+        }
+        
+    }
+    
+}
+
 
 int main(){
     int a, b, c;
@@ -11,4 +52,6 @@ int main(){
         array_a[334] =  i * i;
     }
     
+    
+        
 }
