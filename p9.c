@@ -28,32 +28,16 @@
  *
  */
 
-int binary_search(int* array,int length, int key){
-    int l = 0; 
-	int r = length;
-    int pivot = (l + r) / 2;
-    while( l <= r){
-        if ( key < array[pivot]){
-            r = pivot-1, pivot = (l + r)/2;
-        }
-        else if ( key > array[pivot]){
-            l = pivot+1, pivot = (l + r)/2;
-        }
-        else{
-            return pivot;
-        }
-    }
-    return -1; // key not found
+int perfect_square_check(int n){
+	int n_sqroot = sqrt(n);
+	if (n % n_sqroot == 0 && n/n_sqroot == n_sqroot ){
+		return n_sqroot;
+	}
+	return -1;
 }
 
 int main(){
-    int a, b, c, array_c[500], array_a[500], array_b[500];
-    
-    // 3 arrays of perfect square.
-    for (int i = 0; i < 500; i++){
-    	array_a[i] = array_b[i] = array_c[i] = i*i;
-    }
-
+    int a, b, c;
     for (a = 1;  a <= 500; a++){
         for (int i = a*(a+1)/500; i < a; i++){
         	// if i <= (a^2/500) then b <= a
@@ -63,7 +47,7 @@ int main(){
         		continue;
         	}
         	b = ab / a;
-    		c = binary_search(array_c, 500, array_a[a] + array_b[b]);
+    		c = perfect_square_check(a*a + b*b);
     		if (c != -1 && a + b + c == 1000){
     			goto found;
     		}
