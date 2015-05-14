@@ -62,11 +62,11 @@ int main(){
 		"84580156166097919133875499200524063689912560717606"
 		"05886116467109405077541002256983155200055935729725"
 		"71636269561882670428252483600823257530420752963450");
-	int i, j, length = 13;
+	int length = 13;
 	long largest = 0;
 	int queue[length];
-	for (i = 0; string[i]; i++){
-		for(j = 0; j < length; j++){
+	for (int i = 0; string[i]; i++){
+		for(int j = 0; j < length; j++){
 			if(string[i+j] == '0'){
 				i = i + j;
 				break;
