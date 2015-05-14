@@ -20,8 +20,7 @@ int palindrome_test(int n){
     int digits = (n == 0) ? 1 : (int) (log10((double) n) + 1);
     int array_number[digits];git 
     int number = n;
-    int i;
-    for (i = 0; i < digits; i++){
+    for (int i = 0; i < digits; i++){
         array_number[i] = n % 10;
         n = n / 10; 
     }
@@ -37,12 +36,10 @@ int palindrome_test(int n){
     return true;
 }
 int main(){
-    int i;
-    int j;
     int largest = 0;
     int product;
-    for (i = 900; i < 1000; i++){
-        for (j = i; j < 1000; j++){
+    for (int i = 900; i < 1000; i++){
+        for (int j = i; j < 1000; j++){
             product = i * j;
             if (palindrome_test(product) == true){
                 largest = (largest < product) ? product : largest;
