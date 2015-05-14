@@ -28,16 +28,12 @@ bool prime_test(int number){
 }
 
 int main(){
-	int limit;
-	int i;
-	int j;
+	int limit = 20;
 	int multiple = 1;
-	printf("Enter limit \n");
-	scanf("%d", &limit);
 
-	for (i = 2; i < limit; i++){
+	for (int i = 2; i < limit; i++){
 		if (prime_test(i) == true){
-			j = 1;
+			int j = 1;
 			int temp = (int) pow(i, j);
 			while (temp < limit){
 				temp = pow(i, ++j);
@@ -45,6 +41,5 @@ int main(){
 			multiple = multiple * (int) pow(i, j - 1);
 		}
 	}
-
 	printf("%d \n", multiple);
 }
