@@ -28,13 +28,12 @@ int main(void){
 	printf("Enter the limit ");
 	scanf("%d", &limit);
 	long array[limit];
-	int i;
-	for (i = 0; i < limit; i++){
+	for (int i = 0; i < limit; i++){
 		array[i] = 0;
 	}
 	array[0] = 2;
 	long number;
-	for (i = 1; i < limit; i++){
+	for (int i = 1; i < limit; i++){
 		for(number = array[i-1] + 1; number < 2*array[i-1]; number++){
 			if (prime_check(array, limit, number) == true){
 				array[i] = number;
