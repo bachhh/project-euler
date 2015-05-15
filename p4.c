@@ -19,7 +19,7 @@ typedef enum { false, true } bool;
 
 int palindrome_test(int n){
     int digits = (n == 0) ? 1 : (int) (log10((double) n) + 1);
-    int array_number[digits];git 
+    int array_number[digits];
     int number = n;
     for (int i = 0; i < digits; i++){
         array_number[i] = n % 10;
