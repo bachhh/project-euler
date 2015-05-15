@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h> 
+
 /*
  *    A palindromic number reads the same both ways. 
  *  
