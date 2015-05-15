@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include <math.h>
 
 /*
@@ -8,7 +7,6 @@
  *	Find the sum of all the primes below two million.
  *
  */
-
 
 int main(void){
 	int x = 2000000;
