@@ -35,6 +35,15 @@
 */
 
 int verticalProduct(int matrix[][], int x, int y){
+	int i = 0;
+	int product = 1;
+	for (i = 0; i < 4; i++){
+		product = product*matrix[x][y+i];
+	}
+	return product;
+}
+
+int horizontalProduct(int matrix[][], int x, int y){
 
 }
 
@@ -45,6 +54,7 @@ int diagonalLeftProduct(int matrix[][], int x, int y){
 int diaRightProduct(int matrix[][], int x, int y){
 
 }
+
 int main(){
 
 	return 0;
