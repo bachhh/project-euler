@@ -34,28 +34,49 @@
 
 */
 
+#define MAX_GRID 20
+
 int verticalProduct(int matrix[][], int x, int y){
 	int i = 0;
 	int product = 1;
 	for (i = 0; i < 4; i++){
+		if (y+i > MAX_GRID) return 0;
 		product = product*matrix[x][y+i];
 	}
 	return product;
 }
 
 int horizontalProduct(int matrix[][], int x, int y){
-
+	int i = 0;
+	int product = 1;
+	for (i = 0; i < 4; i++){
+		if (x+i > MAX_GRID) return 0;
+		product = product * matrix[x+i][y];
+	}
+	return product;
 }
 
 int diagonalLeftProduct(int matrix[][], int x, int y){
-
+	int i = 0;
+	int product = 1;
+	for (i = 0; i < 4; ++i){}{
+		if (x-i < 0 || y+i > MAX_GRID) return 0;
+		product = product * matrix[x-i][y+i];
+	}
+	return product;
 }
 
 int diaRightProduct(int matrix[][], int x, int y){
-
+	int i = 0;
+	int product = 1;
+	for (i = 0; i < 4; ++i){
+		if (x+i > MAX_GRID || y+i > MAX_GRID) return 0;
+		product = product * matrix[x+i][y+i];
+	}
+	return product;
 }
 
 int main(){
-
+	
 	return 0;
 }
