@@ -1,6 +1,12 @@
 #include <stdio.h>
 #define COUNT 1000000
 
+
+/* 
+ *      Honestly I've discovered how to use the index of array as an 
+ * integer value itself, here's my  things 
+ * 
+ */
 int main(){
     int sieve[COUNT];
     for (int i = 0; i < COUNT; i++) sieve[i] = i;
@@ -13,10 +19,11 @@ int main(){
             } while(multiples < COUNT);
         }
     }
+    for (int i = 1; i < COUNT; i++) if(sieve[i] == 0) printf("Zero value %d \n", i);
     
-    
-        int triangular = 28; // initial
-        while (1){
+        long long int triangular = 1; // initial
+        int n = 1;           // 7th triangular number
+        while(1){
             int factors[COUNT] = {0};
             int divider = triangular;
             do {
@@ -29,9 +36,10 @@ int main(){
             for (int i = 0; i < COUNT; i++){
                 if(factors[i] > 0) cardinality *= (factors[i] + 1);
             }
-            if (cardinality >= 500) break;
-            triangular += triangular + 1;
+            if(cardinality >= 500) break;
+            n++;
+            triangular += n;
         }
-        
+        printf("Triangular = %lld \n", triangular);
     return 0;
 }
