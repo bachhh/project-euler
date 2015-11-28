@@ -1,81 +1,102 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <string.h>
 
-#define LIMIT 100000000 // 100 millions limit, also stack limit
+#define LIMIT 1000000
 
-typedef struct node{
-    long int value;
-    long int position;
-    struct node *next;
-} Node;
-
-typedef struct Stack{
-    Node** stackarray;
+typedef struct stack{
+    long int* array;
     long int top;
 } Stack;
 
 Stack* stack_init(){
-    Stack* stack = malloc(sizeof(Stack)); 
-    stack->stackarray = (Node**) malloc(LIMIT*sizeof(Node*));
-    stack->top = 0;
-    return stack;
+    Stack* ptr = malloc(sizeof(Stack));
+    ptr->array = (long int*) malloc(600*sizeof(long int));
+    ptr->top = -1;
+    return ptr;
 }
 
-Node* stack_pop(Stack* stack){
-    if (stack->top < 0) return NULL;
-    Node* value = stack->stackarray[stack->top];
-    stack->top--;
-    return value;
-}
-
-int stack_add(Stack* stack, Node* node){
-    if(stack->top >= LIMIT-1) return 1;
-    stack->stackarray[stack->top+1] = node;
-    stack->top++;
-    return 0;
-}
-
-/* Approach "bottom up" to generate a tree of sequences */
-void create(Stack* stack, Node** array, Node* n){
-    long long int even = n->value * 2;
-    long long int odd = ((n->value-1)%3==0) ? (n->value -1 )/3 : 0;
-    if(even<LIMIT && !array[even]){
-        array[even] = (Node*) malloc(sizeof(Node*));
-        array[even]->value = even, n->next = array[even];
-        array[even]->position = n->position + 1;
-        stack_add(stack, array[even]);
+void stack_add(Stack* stack, long int n){
+    if (stack->top >= LIMIT-1) {
+        printf("Out of bound stack add\n");
+        exit(EXIT_FAILURE);
     }
-    if(odd>1 && odd%2 != 0 && !array[odd]){
-        array[odd] = (Node*) malloc(sizeof(Node*));
-        array[odd]->value = odd, n->next = array[odd];
-        array[odd]->position = n->position + 1;
-        stack_add(stack, array[odd]);
+    else{
+        stack->top++;
+        stack->array[stack->top] = n;
+    }
+}
+
+long int stack_pop(Stack* stack){
+    if (stack->top>-1){
+        long int value = stack->array[stack->top];
+        stack->top--;
+        return value;
+    }
+    else {
+        printf("Out of bound stack pop\n");
+        exit(EXIT_FAILURE);
+    }
+        
+}
+
+
+long int collatz(long int n){
+    return (n%2==0) ? n/2 : 3*n +1;
+}
+
+
+int find(int* array, Stack* stack, long int n){
+    long int n_copy = n;
+    
+    // For every unknown number appear, solve their children
+    // first, then their collatz number = collatz(children) + 1
+    while (n > LIMIT-1 || array[n] == 0){
+        stack_add(stack, n);
+        n = collatz(n);
     }
     
+    int x = 0; // Counter
+    long int from_stack;
+    
+    // Solving collatz number for subsequence number in stack
+    while(stack->top>-1){
+        from_stack = stack_pop(stack);
+        // Increment position counter for every pop from stack
+        x++;
+        
+        // Write position for numbers < 1000000 
+        if (from_stack <= LIMIT-1){
+            array[from_stack] = x + array[n];
+        }
+        
+    }
+    return array[n_copy];
 }
 
 
 int main(){
-    Stack* mainstack = stack_init();
-    Node** list = malloc(LIMIT * sizeof(Node*));
-    for (int i=0; i<LIMIT; i++) list[i] = NULL;
+    clock_t t = clock(); // Start clocking
+    Stack* stack = stack_init();
+    int* array = malloc(LIMIT*sizeof(int));
+
+    memset( array, 0, sizeof(int));
+    array[1] = 1;
+    int largest = 0;
+    long int number = 0;
     
-    printf("line ok\n");
-    list[1] = (Node*) malloc(sizeof(Node));
-    list[1]->value = 1, list[1]->position = 1;
-    stack_add(mainstack, list[1]);
     
-    printf("line ok\n");
-    long int test;
-    while(mainstack->top){
-        Node* top = stack_pop(mainstack);
-        create(mainstack, list, top);
+    for (int i = 1; i < LIMIT; i++){
+        if(array[i] == 0) array[i] = find(array, stack, i);
+        if (largest < array[i]){
+            largest = array[i];
+            number = i;
+        }
     }
+    t = clock() - t;
+    printf ("Run time: %f \n",((float) t)/CLOCKS_PER_SEC);
+    printf("Largest: %ld length %d \n", number, largest); 
     
-    printf("line ok\n");
-    
-    long int max_position = 0, max_value = 0;
-    
-    printf("Max value = %ld \n", max_value);
     return 0;
 }
